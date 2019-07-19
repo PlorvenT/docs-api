@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb29fac24d7623284e0643ba1e7d5b19",
+    "content-hash": "4161819ca0d67cb3984ab583b7f8aa4b",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -631,12 +631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "f87f1a3fd5c8341364a076bc2f5f96b59f960be4"
+                "reference": "3eaa8e3dc90bc839fd0b007a0691841b694fa2ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f87f1a3fd5c8341364a076bc2f5f96b59f960be4",
-                "reference": "f87f1a3fd5c8341364a076bc2f5f96b59f960be4",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/3eaa8e3dc90bc839fd0b007a0691841b694fa2ad",
+                "reference": "3eaa8e3dc90bc839fd0b007a0691841b694fa2ad",
                 "shasum": ""
             },
             "require": {
@@ -723,7 +723,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2019-07-18T08:46:05+00:00"
+            "time": "2019-07-19T10:48:57+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -3746,7 +3746,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=7.1.0"
     },
     "platform-dev": []
 }
