@@ -26,6 +26,7 @@ class m190719_095103_create_order_table extends Migration
             'phone' => $this->string(50)->notNull(),
             'companyName' => $this->string(50)->null(),
             'communicateChannel' => $this->string(50)->null(),
+            'createdAt' => $this->timestamp()->defaultExpression('NOW()'),
         ], $tableOptions);
         $this->addPrimaryKey('pk_site_1c', '{{%client}}', ['clientSiteId', 'client1cId']);
 

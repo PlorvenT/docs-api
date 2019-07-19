@@ -23,7 +23,7 @@ class ClientSearch extends Client
     public function rules()
     {
         return [
-            [['clientSiteId', 'name', 'email', 'phone', 'companyName', 'communicateChannel'], 'safe'],
+            [['clientSiteId', 'name', 'email', 'phone', 'companyName', 'communicateChannel', 'createdAt'], 'safe'],
             [['client1cId'], 'integer'],
         ];
     }
@@ -65,6 +65,7 @@ class ClientSearch extends Client
         // grid filtering conditions
         $query->andFilterWhere([
             'client1cId' => $this->client1cId,
+            'createdAt' => $this->createdAt,
         ]);
 
         $query->andFilterWhere(['like', 'clientSiteId', $this->clientSiteId])
