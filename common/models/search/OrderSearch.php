@@ -24,7 +24,7 @@ class OrderSearch extends Order
     {
         return [
             [['id', 'client1cId'], 'integer'],
-            [['clientSiteId', 'status', 'orderedAt', 'paymentMethod', 'extraData'], 'safe'],
+            [['clientSiteId', 'clientName', 'clientEmail', 'clientPhone', 'clientCompany', 'clientCommunicateChannel', 'status', 'orderedAt', 'paymentMethod', 'extraData'], 'safe'],
             [['price'], 'number'],
         ];
     }
@@ -72,6 +72,11 @@ class OrderSearch extends Order
         ]);
 
         $query->andFilterWhere(['like', 'clientSiteId', $this->clientSiteId])
+            ->andFilterWhere(['like', 'clientName', $this->clientName])
+            ->andFilterWhere(['like', 'clientEmail', $this->clientEmail])
+            ->andFilterWhere(['like', 'clientPhone', $this->clientPhone])
+            ->andFilterWhere(['like', 'clientCompany', $this->clientCompany])
+            ->andFilterWhere(['like', 'clientCommunicateChannel', $this->clientCommunicateChannel])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'paymentMethod', $this->paymentMethod])
             ->andFilterWhere(['like', 'extraData', $this->extraData]);

@@ -16,6 +16,11 @@ use Yii;
  * @property int $id
  * @property string $clientSiteId
  * @property int $client1cId
+ * @property string $clientName
+ * @property string $clientEmail
+ * @property string $clientPhone
+ * @property string $clientCompany
+ * @property string $clientCommunicateChannel
  * @property string $status
  * @property string $orderedAt
  * @property string $paymentMethod
@@ -41,12 +46,12 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['clientSiteId', 'client1cId', 'status', 'orderedAt', 'paymentMethod', 'price'], 'required'],
+            [['clientSiteId', 'client1cId', 'clientName', 'clientPhone', 'status', 'orderedAt', 'paymentMethod', 'price'], 'required'],
             [['client1cId'], 'integer'],
             [['orderedAt'], 'safe'],
             [['price'], 'number'],
             [['extraData'], 'string'],
-            [['clientSiteId', 'status', 'paymentMethod'], 'string', 'max' => 50],
+            [['clientSiteId', 'clientName', 'clientEmail', 'clientPhone', 'clientCompany', 'clientCommunicateChannel', 'status', 'paymentMethod'], 'string', 'max' => 50],
             [['clientSiteId', 'client1cId'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['clientSiteId' => 'clientSiteId', 'client1cId' => 'client1cId']],
         ];
     }
@@ -60,6 +65,11 @@ class Order extends \yii\db\ActiveRecord
             'id' => 'ID',
             'clientSiteId' => 'Client Site ID',
             'client1cId' => 'Client1c ID',
+            'clientName' => 'Client Name',
+            'clientEmail' => 'Client Email',
+            'clientPhone' => 'Client Phone',
+            'clientCompany' => 'Client Company',
+            'clientCommunicateChannel' => 'Client Communicate Channel',
             'status' => 'Status',
             'orderedAt' => 'Ordered At',
             'paymentMethod' => 'Payment Method',
