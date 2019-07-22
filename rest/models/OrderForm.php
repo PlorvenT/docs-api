@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace rest\models;
 
 use common\models\Client;
-use common\models\Order;
+use rest\models\view\Order;
 use yii\base\Model;
 use yii\web\UnprocessableEntityHttpException;
 
@@ -85,11 +85,20 @@ class OrderForm extends Model
      */
     private $order;
 
-    public function __construct($config = [])
+    /**
+     * OrderForm constructor.
+     * @param Order|null $order
+     * @param array $config
+     */
+    public function __construct(Order $order = null, $config = [])
     {
         parent::__construct($config);
 
-        $this->order = new Order();
+        if ($order) {
+            $this->order = $order;
+        } else {
+            $this->order = new Order();
+        }
     }
 
     /**
@@ -109,6 +118,35 @@ class OrderForm extends Model
                 'max' => 50,
             ],
         ];
+    }
+
+    /**
+     * This method converts string to json.
+     *
+     * @param $extraData
+     * @return string
+     */
+    private function convertDataToString($extraData): string
+    {
+        if (is_string($extraData)) {
+            return $extraData;
+        }
+
+        if ($extraData || !empty($extraData)) {
+            return json_encode($extraData);
+        }
+
+        return $extraData;
+    }
+
+    /**
+     * @return bool
+     */
+    public function beforeValidate()
+    {
+        $this->extraData = $this->convertDataToString($this->extraData);
+
+        return parent::beforeValidate();
     }
 
     /**

@@ -8,7 +8,8 @@
 
 namespace rest\controllers\actions\client;
 
-use common\models\Client;
+use rest\models\search\ClientForm;
+use Yii;
 use yii\base\Action;
 use yii\data\ActiveDataProvider;
 
@@ -19,15 +20,19 @@ use yii\data\ActiveDataProvider;
 class IndexAction extends Action
 {
     /**
-     * @return ActiveDataProvider
+     * @return array|ActiveDataProvider
      */
     public function run()
     {
-        $clientQuery = Client::find();
+        $searchForm = new ClientForm();
+        $searchForm->setAttributes(\Yii::$app->request->get());
 
-        $dataProvider = new ActiveDataProvider();
-        $dataProvider->query = $clientQuery;
+        if (!$searchForm->validate()) {
+            Yii::$app->response->setStatusCode(422);
+            return $searchForm->errors;
+        }
 
-        return $dataProvider;
+        return $searchForm->getDataProvider();
+
     }
 }

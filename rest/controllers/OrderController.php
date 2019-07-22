@@ -14,6 +14,7 @@ use rest\controllers\actions\order\CreateAction;
 use rest\controllers\actions\order\IndexAction;
 use rest\controllers\actions\order\DeleteAction;
 use rest\controllers\actions\order\ViewAction;
+use rest\controllers\actions\order\UpdateAction;
 
 /**
  * Class OrderController
@@ -33,6 +34,9 @@ class OrderController extends Controller
             'create' => [
                 'class' => CreateAction::class
             ],
+            'update' => [
+                'class' => UpdateAction::class
+            ],
             'view' => [
                 'class' => ViewAction::class
             ],
@@ -51,6 +55,7 @@ class OrderController extends Controller
             'index' => ['GET'],
             'view' => ['GET'],
             'create' => ['POST'],
+            'update' => ['PATCH'],
             'delete' => ['DELETE'],
         ];
     }

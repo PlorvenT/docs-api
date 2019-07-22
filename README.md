@@ -20,11 +20,12 @@ AVAILABLE ENDPOINTS
 | 3. | PATCH /orders/{id}  | -  |
 | 4. | GET /orders/{id} | +  |
 | 5. | DELETE /orders/{id}  | +  |
-| 6. | GET /clients  | -  |
+| 6. | GET /clients  | +  |
 | 7. | GET /documents/{orderId}  | -  |
 | 8. | POST /documents  | -  |
 | 9. | PATCH /documents/{id} | -  |
 | 10. | DELETE /documents/{id}  | -  |
+6 - Принимает get-параметр <code>date</code> для выгрузки клиентов с определённого времени.
 
 DIRECTORY STRUCTURE
 -------------------

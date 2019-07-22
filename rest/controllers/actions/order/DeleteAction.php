@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace rest\controllers\actions\order;
 
-use common\models\Order;
+use rest\models\view\Order;
 use Yii;
 use yii\base\Action;
 use yii\web\NotFoundHttpException;
