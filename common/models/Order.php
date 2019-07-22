@@ -103,4 +103,17 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasMany(OrderDocument::class, ['orderId' => 'id']);
     }
+
+    /**
+     * @return bool
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    public function beforeDelete()
+    {
+        foreach ($this->orderDocuments as $document) {
+            $document->delete();
+        }
+        return parent::beforeDelete();
+    }
 }

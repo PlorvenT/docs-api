@@ -1,6 +1,8 @@
 <?php
 
+use common\models\OrderDocument;
 use yii\helpers\Html;
+use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -9,7 +11,7 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Order Documents', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+YiiAsset::register($this);
 ?>
 <div class="order-document-view">
 
@@ -28,7 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'type',
             'statusForOrder',
             'statusForAct',
-            'file',
+            'fileName',
+            [
+                'label' => 'fileHash',
+                'format' => 'raw',
+                'value' => function (OrderDocument $document) {
+                    return Html::a($document->fileHash, '/files/' . $document->fileHash, ['target' => '_blank']);
+                }
+            ],
         ],
     ]) ?>
 

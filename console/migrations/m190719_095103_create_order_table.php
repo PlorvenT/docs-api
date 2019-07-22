@@ -64,7 +64,8 @@ class m190719_095103_create_order_table extends Migration
             'type' => $this->string(50)->notNull(),
             'statusForOrder' => $this->string(50)->notNull(),
             'statusForAct' => $this->string(50)->notNull(),
-            'file' => $this->string(255)->notNull(),
+            'fileName' => $this->string(255)->notNull(),
+            'fileHash' => $this->string(255)->notNull(),
         ], $tableOptions);
 
         $this->createIndex('idx_order_document_orderId', '{{%order_document}}', 'orderId');

@@ -25,7 +25,7 @@ class OrderController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
+    public function actions(): array
     {
         return [
             'index' => [
@@ -49,7 +49,7 @@ class OrderController extends Controller
     /**
      * @inheritdoc
      */
-    protected function verbs()
+    protected function verbs(): array
     {
         return [
             'index' => ['GET'],

@@ -1,6 +1,23 @@
 Cистема учёта документации построенная на переделаном шаблоне [Yii 2](http://www.yiiframework.com/)
 
 
+Установка
+-------------------
+Устанавливается как обычное yii2-advanced приложение
+```
+$ composer install
+$ php init
+```
+Не забываем о миграциях
+```
+$ php yii migrate
+```
+### Кастомные штуки
+Надо симлинку на файлы, чтоб можно было качать в админке.
+```
+ln -s /PATH_TO_PROJECT/rest/web/files /PATH_TO_PROJECT/backend/web/files
+```
+
 LOGIN DATA
 -------------------
 Админка
@@ -17,14 +34,15 @@ AVAILABLE ENDPOINTS
 | ------------- | ------------- | ------------- |
 | 1. | GET /orders  | +  |
 | 2. | POST /orders  | +  |
-| 3. | PATCH /orders/{id}  | -  |
+| 3. | PATCH /orders/{id}  | +  |
 | 4. | GET /orders/{id} | +  |
 | 5. | DELETE /orders/{id}  | +  |
 | 6. | GET /clients  | +  |
-| 7. | GET /documents/{orderId}  | -  |
-| 8. | POST /documents  | -  |
-| 9. | PATCH /documents/{id} | -  |
-| 10. | DELETE /documents/{id}  | -  |
+| 7. | GET /documents/{orderId}  | +  |
+| 8. | POST /documents  | +  |
+| 9. | POST /documents/{id} | +  |
+| 10. | GET /documents/download/{hash}  | +  |
+| 11. | DELETE /documents/{id}  | +  |
 6 - Принимает get-параметр <code>date</code> для выгрузки клиентов с определённого времени.
 
 DIRECTORY STRUCTURE

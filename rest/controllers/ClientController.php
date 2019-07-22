@@ -20,7 +20,7 @@ class ClientController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
+    public function actions(): array
     {
         return [
             'index' => [
@@ -32,7 +32,7 @@ class ClientController extends Controller
     /**
      * @inheritdoc
      */
-    protected function verbs()
+    protected function verbs(): array
     {
         return [
             'index' => ['GET'],

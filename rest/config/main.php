@@ -1,6 +1,7 @@
 <?php
 
 use rest\components\ErrorHandler;
+use rest\controllers\OrderDocumentController;
 use yii\web\JsonParser;
 use yii\web\Response;
 
@@ -54,6 +55,22 @@ return [
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'client'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'order'],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'documents' => 'order-document',
+                    ],
+                    'extraPatterns' => [
+                        'GET {orderId}' => OrderDocumentController::ACTION_INDEX,
+                        'POST {id}' => OrderDocumentController::ACTION_UPDATE,
+                        'GET download/{hash}' => OrderDocumentController::ACTION_DOWNLOAD,
+                    ],
+                    'tokens' => [
+                        '{id}' => '<id:\d+>',
+                        '{orderId}' => '<orderId:\d+>',
+                        '{hash}' => '<hash:[a-zA-Z0-9\\-]+>',
+                    ],
+                ],
             ],
         ],
     ],

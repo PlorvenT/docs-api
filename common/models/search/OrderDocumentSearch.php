@@ -24,7 +24,7 @@ class OrderDocumentSearch extends OrderDocument
     {
         return [
             [['id', 'orderId'], 'integer'],
-            [['name', 'type', 'statusForOrder', 'statusForAct', 'file'], 'safe'],
+            [['name', 'type', 'statusForOrder', 'statusForAct', 'fileName'], 'safe'],
         ];
     }
 
