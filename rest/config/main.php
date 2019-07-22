@@ -53,6 +53,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'client'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'order'],
             ],
         ],
     ],

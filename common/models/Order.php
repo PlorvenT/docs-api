@@ -48,11 +48,21 @@ class Order extends \yii\db\ActiveRecord
         return [
             [['clientSiteId', 'client1cId', 'clientName', 'clientPhone', 'status', 'orderedAt', 'paymentMethod', 'price'], 'required'],
             [['client1cId'], 'integer'],
-            [['orderedAt'], 'safe'],
+            ['orderedAt', 'datetime', 'format' => 'php:Y-m-d H:i:s', 'message' => 'Дожно быть в формате Y-m-d H:i:s'],
             [['price'], 'number'],
             [['extraData'], 'string'],
-            [['clientSiteId', 'clientName', 'clientEmail', 'clientPhone', 'clientCompany', 'clientCommunicateChannel', 'status', 'paymentMethod'], 'string', 'max' => 50],
-            [['clientSiteId', 'client1cId'], 'exist', 'skipOnError' => true, 'targetClass' => Client::class, 'targetAttribute' => ['clientSiteId' => 'clientSiteId', 'client1cId' => 'client1cId']],
+            [
+                ['clientSiteId', 'clientName', 'clientEmail', 'clientPhone', 'clientCompany', 'clientCommunicateChannel', 'status', 'paymentMethod'],
+                'string',
+                'max' => 50,
+            ],
+            [
+                ['clientSiteId', 'client1cId'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Client::class,
+                'targetAttribute' => ['clientSiteId' => 'clientSiteId', 'client1cId' => 'client1cId'],
+            ],
         ];
     }
 

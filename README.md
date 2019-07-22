@@ -10,6 +10,22 @@ password: admin
 ```
 Rest API - доступно всем
 
+AVAILABLE ENDPOINTS
+-------------------
+
+| № | API Method    | Реализовано   |
+| ------------- | ------------- | ------------- |
+| 1. | GET /orders  | +  |
+| 2. | POST /orders  | +  |
+| 3. | PATCH /orders/{id}  | -  |
+| 4. | GET /orders/{id} | +  |
+| 5. | DELETE /orders/{id}  | +  |
+| 6. | GET /clients  | -  |
+| 7. | GET /documents/{orderId}  | -  |
+| 8. | POST /documents  | -  |
+| 9. | PATCH /documents/{id} | -  |
+| 10. | DELETE /documents/{id}  | -  |
+
 DIRECTORY STRUCTURE
 -------------------
 
