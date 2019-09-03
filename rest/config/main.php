@@ -2,6 +2,7 @@
 
 use rest\components\ErrorHandler;
 use rest\controllers\OrderDocumentController;
+use rest\controllers\ProductController;
 use yii\web\JsonParser;
 use yii\web\Response;
 
@@ -69,6 +70,16 @@ return [
                         '{id}' => '<id:\d+>',
                         '{orderId}' => '<orderId:\d+>',
                         '{hash}' => '<hash:[a-zA-Z0-9\\-]+>',
+                    ],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'content' => 'product',
+                    ],
+                    'extraPatterns' => [
+                        'POST push-products' => ProductController::ACTION_PUSH_PRODUCTS,
+                        'GET get-products' => ProductController::ACTION_GET_PRODUCTS,
                     ],
                 ],
             ],
