@@ -19,6 +19,22 @@ class Product extends \common\models\Product
     {
         $fields = parent::fields();
         unset($fields['id']);
+        $fields['sizes'] = function () {
+            return $this->sizes ? $this->sizes : [];
+        };
         return $fields;
+    }
+
+    public function extraFields()
+    {
+        return ['sizes'];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSizes()
+    {
+        return $this->hasMany(ProductSize::class, ['product_id' => 'id']);
     }
 }

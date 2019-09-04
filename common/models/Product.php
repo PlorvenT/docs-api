@@ -19,6 +19,8 @@ use Yii;
  * @property string $installation_content
  * @property string $features_content
  * @property string $sizes_content
+ *
+ * @property ProductSize[] $sizes
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -63,5 +65,13 @@ class Product extends \yii\db\ActiveRecord
             'features_content' => 'Features Content',
             'sizes_content' => 'Sizes Content',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSizes()
+    {
+        return $this->hasMany(ProductSize::class, ['product_id' => 'id']);
     }
 }

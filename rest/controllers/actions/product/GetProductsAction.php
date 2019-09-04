@@ -20,7 +20,7 @@ class GetProductsAction extends Action
 {
     public function run()
     {
-        $products = Product::find()->all();
+        $products = Product::find()->with(['sizes'])->all();
         return ['products' => $products];
     }
 }

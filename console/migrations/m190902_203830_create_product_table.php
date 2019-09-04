@@ -38,7 +38,7 @@ class m190902_203830_create_product_table extends Migration
             'product_id' => $this->integer(11)->notNull(),
             'guid' => $this->string(50)->notNull(),
             'price' => $this->decimal(10, 2)->notNull(),
-            'marking_content' => $this->decimal(10, 2)->notNull(),
+            'marking_content' => $this->text()->notNull(),
             'images' => $this->json(),
         ], $tableOptions);
 
