@@ -43,6 +43,8 @@ AVAILABLE ENDPOINTS
 | 9. | POST /documents/{id} | +  |
 | 10. | GET /documents/download/{hash}  | +  |
 | 11. | DELETE /documents/{id}  | +  |
+| 12. | POST /content/get-products  | +  |
+| 13. | GET /content/get-products  | +  |
 6 - Принимает get-параметр <code>date</code> для выгрузки клиентов с определённого времени.
 
 DIRECTORY STRUCTURE

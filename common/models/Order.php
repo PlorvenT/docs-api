@@ -20,6 +20,7 @@ use Yii;
  * @property string $clientEmail
  * @property string $clientPhone
  * @property string $clientCompany
+ * @property string $clientCompanyInn
  * @property string $clientCommunicateChannel
  * @property string $status
  * @property string $orderedAt
@@ -51,6 +52,7 @@ class Order extends \yii\db\ActiveRecord
             ['orderedAt', 'datetime', 'format' => 'php:Y-m-d H:i:s', 'message' => 'Дожно быть в формате Y-m-d H:i:s'],
             [['price'], 'number'],
             [['extraData'], 'string'],
+            [['clientCompanyInn'], 'string', 'max' => 255],
             [
                 ['clientSiteId', 'clientName', 'clientEmail', 'clientPhone', 'clientCompany', 'clientCommunicateChannel', 'status', 'paymentMethod'],
                 'string',
@@ -85,6 +87,7 @@ class Order extends \yii\db\ActiveRecord
             'paymentMethod' => 'Payment Method',
             'price' => 'Price',
             'extraData' => 'Extra Data',
+            'clientCompanyInn' => 'Client Company Inn',
         ];
     }
 

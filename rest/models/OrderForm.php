@@ -81,6 +81,11 @@ class OrderForm extends Model
     public $extraData;
 
     /**
+     * @var string
+     */
+    public $clientCompanyInn;
+
+    /**
      * @var Order
      */
     private $order;
@@ -117,6 +122,7 @@ class OrderForm extends Model
                 'string',
                 'max' => 50,
             ],
+            [['clientCompanyInn'], 'string', 'max' => 255],
         ];
     }
 
@@ -144,7 +150,9 @@ class OrderForm extends Model
      */
     public function beforeValidate()
     {
-        $this->extraData = $this->convertDataToString($this->extraData);
+        if ($this->extraData) {
+            $this->extraData = $this->convertDataToString($this->extraData);
+        }
 
         return parent::beforeValidate();
     }
@@ -207,6 +215,9 @@ class OrderForm extends Model
         $client->phone = $this->clientPhone;
         $client->communicateChannel = $this->clientCommunicateChannel;
         $client->companyName = $this->clientCompany;
+        if ($this->clientCompanyInn) {
+            $client->companyInn = $this->clientCompanyInn;
+        }
 
         if (!$client->save()) {
             \Yii::error($client->errors, 'app');

@@ -36,7 +36,7 @@ class UpdateAction extends Action
             return $document->errors;
         }
 
-        Yii::$app->response->setStatusCode(201);
+        Yii::$app->response->setStatusCode(200);
         return $document;
     }
 }

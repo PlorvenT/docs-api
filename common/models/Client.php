@@ -19,6 +19,7 @@ use Yii;
  * @property string $email
  * @property string $phone
  * @property string $companyName
+ * @property string $companyInn
  * @property string $communicateChannel
  * @property string $createdAt
  *
@@ -45,6 +46,7 @@ class Client extends \yii\db\ActiveRecord
             [['createdAt'], 'safe'],
             [['clientSiteId', 'name', 'email', 'phone', 'companyName', 'communicateChannel'], 'string', 'max' => 50],
             [['clientSiteId', 'client1cId'], 'unique', 'targetAttribute' => ['clientSiteId', 'client1cId']],
+            [['companyInn'], 'string', 'max' => 255],
         ];
     }
 
@@ -62,6 +64,7 @@ class Client extends \yii\db\ActiveRecord
             'companyName' => 'Company Name',
             'communicateChannel' => 'Communicate Channel',
             'createdAt' => 'Created At',
+            'companyInn' => 'Company Inn',
         ];
     }
 
