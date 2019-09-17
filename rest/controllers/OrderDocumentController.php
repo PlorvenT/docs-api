@@ -23,11 +23,11 @@ use rest\controllers\actions\orderDocument\UpdateAction;
 class OrderDocumentController extends Controller
 {
     //actions
-    public const ACTION_INDEX = 'index';
-    public const ACTION_CREATE = 'create';
-    public const ACTION_UPDATE = 'update';
-    public const ACTION_DOWNLOAD = 'download';
-    public const ACTION_DELETE = 'delete';
+    const ACTION_INDEX = 'index';
+    const ACTION_CREATE = 'create';
+    const ACTION_UPDATE = 'update';
+    const ACTION_DOWNLOAD = 'download';
+    const ACTION_DELETE = 'delete';
 
     /**
      * @inheritdoc

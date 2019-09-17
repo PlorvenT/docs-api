@@ -28,19 +28,19 @@ use yii\web\UploadedFile;
 class OrderDocument extends \yii\db\ActiveRecord
 {
     //types
-    public const TYPE_CONTRACT = 'договор';
-    public const TYPE_ACCOUNT = 'счёт';
-    public const TYPE_INVOICE = 'накладная';
+    const TYPE_CONTRACT = 'договор';
+    const TYPE_ACCOUNT = 'счёт';
+    const TYPE_INVOICE = 'накладная';
 
     //statuses for order
-    public const STATUS_FOR_ORDER_AGREEMENT = 'Согласование';
-    public const STATUS_FOR_ORDER_EXCHANGE_OF_ORIGINALS = 'Обмен оригиналами';
-    public const STATUS_FOR_ORDER_ORIGINAL_RECEIVED = 'Оригинал получен сторонами';
+    const STATUS_FOR_ORDER_AGREEMENT = 'Согласование';
+    const STATUS_FOR_ORDER_EXCHANGE_OF_ORIGINALS = 'Обмен оригиналами';
+    const STATUS_FOR_ORDER_ORIGINAL_RECEIVED = 'Оригинал получен сторонами';
 
     //statuses for act
-    public const STATUS_FOR_ACT_WAIT_FOR_SHIPMENT = 'Ждём отгрузки';
-    public const STATUS_FOR_ACT_WAIT_ORIGINAL = 'Ждём оригинал';
-    public const STATUS_FOR_ACT_RECEIVED_ORIGINAL = 'Оригинал получен';
+    const STATUS_FOR_ACT_WAIT_FOR_SHIPMENT = 'Ждём отгрузки';
+    const STATUS_FOR_ACT_WAIT_ORIGINAL = 'Ждём оригинал';
+    const STATUS_FOR_ACT_RECEIVED_ORIGINAL = 'Оригинал получен';
 
     /**
      * @var array
