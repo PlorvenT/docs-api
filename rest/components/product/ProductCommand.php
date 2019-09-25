@@ -55,6 +55,7 @@ abstract class ProductCommand
                     $productSize->guid = $size['guid'];
                     $productSize->price = $size['price'];
                     $productSize->marking_content = $size['marking_content'];
+                    $productSize->features_content = $size['features_content'];
                     $productSize->images = $this->mirrorImages($size['images']);
                     $productSize->save();
                 } elseif ($size['action'] == 'update') {
@@ -64,6 +65,7 @@ abstract class ProductCommand
                         $productSize->guid = $size['guid'];
                         $productSize->price = $size['price'];
                         $productSize->marking_content = $size['marking_content'];
+                        $productSize->features_content = $size['features_content'];
                         $productSize->images = $this->mirrorImages($size['images']);
                         $productSize->save();
                     }

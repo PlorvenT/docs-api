@@ -19,6 +19,7 @@ use Yii;
  * @property string $guid
  * @property string $price
  * @property string $marking_content
+ * @property string $features_content
  * @property array $images
  *
  * @property Product $product
@@ -42,7 +43,7 @@ class ProductSize extends \yii\db\ActiveRecord
             [['product_id', 'guid', 'price', 'marking_content'], 'required'],
             [['product_id'], 'integer'],
             [['price'], 'number'],
-            [['marking_content'], 'string'],
+            [['marking_content', 'features_content'], 'string'],
             [['images'], 'safe'],
             [['guid'], 'string', 'max' => 50],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
@@ -60,6 +61,7 @@ class ProductSize extends \yii\db\ActiveRecord
             'guid' => 'Guid',
             'price' => 'Price',
             'marking_content' => 'Marking Content',
+            'features_content' => 'Features Content',
             'images' => 'Images',
         ];
     }
