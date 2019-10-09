@@ -23,6 +23,7 @@ class UpdateCommand extends ProductCommand
         $product = Product::findOne(['guid' => $this->guid]);
         if ($product) {
             $product->title = $data['title'];
+            $product->section_title = $data['section_title'];
             $product->h1 = $data['h1'];
             $product->short_description = $data['short_description'];
             $product->meta_description = $data['meta_description'];

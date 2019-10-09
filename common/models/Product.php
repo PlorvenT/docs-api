@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $guid
  * @property string $title
+ * @property string $section_title
  * @property string $h1
  * @property string $short_description
  * @property string $meta_description
@@ -38,11 +39,11 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['guid', 'title', 'h1', 'short_description', 'meta_description', 'description', 'pdf_url', 'installation_content', 'features_content', 'sizes_content'], 'required'],
+            [['guid', 'title', 'section_title', 'h1', 'short_description', 'meta_description', 'description', 'pdf_url', 'installation_content', 'features_content', 'sizes_content'], 'required'],
             [['description', 'installation_content', 'features_content', 'sizes_content'], 'string'],
             [['certificates'], 'safe'],
             [['guid'], 'string', 'max' => 50],
-            [['title', 'h1', 'short_description', 'meta_description', 'pdf_url'], 'string', 'max' => 255],
+            [['title', 'section_title', 'h1', 'short_description', 'meta_description', 'pdf_url'], 'string', 'max' => 255],
         ];
     }
 
@@ -55,6 +56,7 @@ class Product extends \yii\db\ActiveRecord
             'id' => 'ID',
             'guid' => 'Guid',
             'title' => 'Title',
+            'section_title' => 'Section Title',
             'h1' => 'H1',
             'short_description' => 'Short Description',
             'meta_description' => 'Meta Description',
