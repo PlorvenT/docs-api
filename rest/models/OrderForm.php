@@ -201,7 +201,8 @@ class OrderForm extends Model
     /**
      * @throws UnprocessableEntityHttpException
      */
-    private function processClient(): void
+    //private function processClient(): void
+    private function processClient()
     {
         $client = Client::findOne(['clientSiteId' => $this->clientSiteId, 'client1cId' => $this->client1cId]);
 
