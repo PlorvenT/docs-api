@@ -148,7 +148,8 @@ class OrderDocument extends \yii\db\ActiveRecord
      * @param string|null $filename
      * @return string
      */
-    public function getFilePath(?string $filename = null): string
+    //public function getFilePath(?string $filename = null): string
+    public function getFilePath($filename = null): string
     {
         if (!$filename) {
             $filename = $this->fileHash;
