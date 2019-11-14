@@ -18,9 +18,9 @@ use Yii;
  * @property int $product_id
  * @property string $guid
  * @property string $price
- * @property string $marking_content
  * @property string $features_content
  * @property array $images
+ * @property string $sizes_content
  *
  * @property Product $product
  */
@@ -40,13 +40,16 @@ class ProductSize extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'guid', 'price', 'marking_content'], 'required'],
+            [['product_id', 'guid', 'price'], 'required'],
             [['product_id'], 'integer'],
             [['price'], 'number'],
-            [['marking_content', 'features_content'], 'string'],
+            [['features_content', 'sizes_content'], 'string'],
             [['images'], 'safe'],
             [['guid'], 'string', 'max' => 50],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
+
+			[['features_content', 'sizes_content'], 'trim'],
+			[['features_content', 'sizes_content'], 'default'],
         ];
     }
 
@@ -60,9 +63,9 @@ class ProductSize extends \yii\db\ActiveRecord
             'product_id' => 'Product ID',
             'guid' => 'Guid',
             'price' => 'Price',
-            'marking_content' => 'Marking Content',
             'features_content' => 'Features Content',
             'images' => 'Images',
+			'sizes_content' => 'Sizes Content',
         ];
     }
 

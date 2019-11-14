@@ -18,8 +18,8 @@ use Yii;
  * @property string $pdf_url
  * @property array $certificates
  * @property string $installation_content
- * @property string $features_content
- * @property string $sizes_content
+ * @property string $marking_content
+ * @property string $pickup_modal_content
  *
  * @property ProductSize[] $sizes
  */
@@ -39,11 +39,14 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['guid', 'title', 'section_title', 'h1', 'short_description', 'meta_description', 'description', 'pdf_url', 'installation_content', 'features_content', 'sizes_content'], 'required'],
-            [['description', 'installation_content', 'features_content', 'sizes_content'], 'string'],
+            [['guid', 'title', 'section_title', 'h1', 'short_description', 'meta_description', 'description', 'pdf_url', 'installation_content'], 'required'],
+            [['description', 'installation_content', 'marking_content', 'pickup_modal_content'], 'string'],
             [['certificates'], 'safe'],
             [['guid'], 'string', 'max' => 50],
             [['title', 'section_title', 'h1', 'short_description', 'meta_description', 'pdf_url'], 'string', 'max' => 255],
+
+			[['marking_content', 'pickup_modal_content'], 'trim'],
+			[['marking_content', 'pickup_modal_content'], 'default'],
         ];
     }
 
@@ -64,8 +67,8 @@ class Product extends \yii\db\ActiveRecord
             'pdf_url' => 'Pdf Url',
             'certificates' => 'Certificates',
             'installation_content' => 'Installation Content',
-            'features_content' => 'Features Content',
-            'sizes_content' => 'Sizes Content',
+			'marking_content' => 'Marking Content',
+			'pickup_modal_content' => 'Pickup Modal Content',
         ];
     }
 

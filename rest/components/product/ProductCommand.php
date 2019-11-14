@@ -54,9 +54,9 @@ abstract class ProductCommand
                     $productSize->product_id = $productId;
                     $productSize->guid = $size['guid'];
                     $productSize->price = $size['price'];
-                    $productSize->marking_content = $size['marking_content'];
                     $productSize->features_content = $size['features_content'];
                     $productSize->images = $this->mirrorImages($size['images']);
+					$productSize->sizes_content = $size['sizes_content'];
                     $productSize->save();
                 } elseif ($size['action'] == 'update') {
                     $productSize = ProductSize::findOne(['guid' => $size['guid']]);
@@ -64,9 +64,9 @@ abstract class ProductCommand
                         $productSize->product_id = $productId;
                         $productSize->guid = $size['guid'];
                         $productSize->price = $size['price'];
-                        $productSize->marking_content = $size['marking_content'];
                         $productSize->features_content = $size['features_content'];
                         $productSize->images = $this->mirrorImages($size['images']);
+						$productSize->sizes_content = $size['sizes_content'];
                         $productSize->save();
                     }
                 } elseif ($size['action'] == 'delete') {
@@ -87,8 +87,8 @@ abstract class ProductCommand
     {
         $product->pdf_url = $this->parseContentService->saveFile($product->pdf_url);
         $product->installation_content = $this->parseContentService->mirrorImageInContent($product->installation_content);
-        $product->features_content = $this->parseContentService->mirrorImageInContent($product->features_content);
-        $product->sizes_content = $this->parseContentService->mirrorImageInContent($product->sizes_content);
+        $product->marking_content = $this->parseContentService->mirrorImageInContent($product->marking_content);
+        $product->pickup_modal_content = $this->parseContentService->mirrorImageInContent($product->pickup_modal_content);
 
         return $product;
     }
