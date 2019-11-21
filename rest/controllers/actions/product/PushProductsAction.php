@@ -40,13 +40,14 @@ class PushProductsAction extends Action
     public function run()
     {
         $products = \Yii::$app->request->post('products');
-        foreach ($products as $product) {
-            $command = CommandFactory::create($product['item']);
-            if ($command) {
-                $command->run($product['item']);
-            }
+        if ( isset ($products['item']) ) {
+        	foreach ( $products['item'] as $item ) {
+		        $command = CommandFactory::create($item);
+		        if ($command) {
+			        $command->run($item);
+		        }
+	        }
         }
-
 //        $installationContent = \Yii::$app->request->post('products')['item']['installation_content'];
 //        $installationContent = $this->parseContentService->mirrorImageInContent($installationContent);
 //        var_dump($installationContent);
