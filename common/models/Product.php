@@ -44,7 +44,7 @@ class Product extends \yii\db\ActiveRecord
             [['certificates'], 'safe'],
             [['guid'], 'string', 'max' => 50],
             [['title', 'section_title', 'h1', 'short_description', 'meta_description', 'pdf_url'], 'string', 'max' => 255],
-
+            ['guid', 'unique'],
 			[['marking_content', 'pickup_modal_content'], 'trim'],
 			[['marking_content', 'pickup_modal_content'], 'default'],
         ];

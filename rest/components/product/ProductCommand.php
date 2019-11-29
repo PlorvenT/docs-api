@@ -12,6 +12,7 @@ namespace rest\components\product;
 use common\models\Product;
 use common\models\ProductSize;
 use rest\services\ParseContentService;
+use yii\web\ServerErrorHttpException;
 
 /**
  * Class ProductCommand
@@ -44,66 +45,4 @@ abstract class ProductCommand
      * @return mixed
      */
     abstract public function run($data);
-
-    protected function processSizes($productId, $sizes)
-    {
-        foreach ($sizes as $size) {
-            if (isset($size['guid'], $size['action'])) {
-                if ($size['action'] == 'new') {
-                    $productSize = new ProductSize();
-                    $productSize->product_id = $productId;
-                    $productSize->guid = $size['guid'];
-                    $productSize->price = $size['price'];
-                    $productSize->features_content = $size['features_content'];
-                    $productSize->images = $this->mirrorImages($size['images']);
-					$productSize->sizes_content = $size['sizes_content'];
-                    $productSize->save();
-                } elseif ($size['action'] == 'update') {
-                    $productSize = ProductSize::findOne(['guid' => $size['guid']]);
-                    if ($productSize) {
-                        $productSize->product_id = $productId;
-                        $productSize->guid = $size['guid'];
-                        $productSize->price = $size['price'];
-                        $productSize->features_content = $size['features_content'];
-                        $productSize->images = $this->mirrorImages($size['images']);
-						$productSize->sizes_content = $size['sizes_content'];
-                        $productSize->save();
-                    }
-                } elseif ($size['action'] == 'delete') {
-                    $productSize = ProductSize::findOne(['guid' => $size['guid']]);
-                    if ($productSize) {
-                        $productSize->delete();
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * @param Product $product
-     * @return Product
-     */
-    protected function uploadFiles($product)
-    {
-        $product->pdf_url = $this->parseContentService->saveFile($product->pdf_url);
-        $product->installation_content = $this->parseContentService->mirrorImageInContent($product->installation_content);
-        $product->marking_content = $this->parseContentService->mirrorImageInContent($product->marking_content);
-        $product->pickup_modal_content = $this->parseContentService->mirrorImageInContent($product->pickup_modal_content);
-
-        return $product;
-    }
-
-    /**
-     * @param $images
-     * @return mixed
-     */
-    protected function mirrorImages($images)
-    {
-        foreach ($images as &$image) {
-            if (isset($image['images']['item']['guid'])){
-                $image['images']['item']['guid'] = $this->parseContentService->saveFile($image['images']['item']['guid']);
-            }
-        }
-        return $images;
-    }
 }

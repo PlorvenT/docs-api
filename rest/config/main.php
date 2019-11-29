@@ -80,6 +80,7 @@ return [
                     'extraPatterns' => [
                         'POST push-products' => ProductController::ACTION_PUSH_PRODUCTS,
                         'GET get-products' => ProductController::ACTION_GET_PRODUCTS,
+                        'OPTIONS push-products' => ProductController::ACTION_OPTIONS,
                     ],
                 ],
             ],

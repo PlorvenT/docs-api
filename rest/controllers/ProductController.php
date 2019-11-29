@@ -12,6 +12,7 @@ namespace rest\controllers;
 use rest\components\Controller;
 use rest\controllers\actions\product\PushProductsAction;
 use rest\controllers\actions\product\GetProductsAction;
+use yii\rest\OptionsAction;
 
 /**
  * Class ProductController
@@ -21,6 +22,7 @@ class ProductController extends Controller
 {
     const ACTION_PUSH_PRODUCTS = 'push-products';
     const ACTION_GET_PRODUCTS = 'content-get-products';
+    const ACTION_OPTIONS = 'options';
     /**
      * @inheritdoc
      */
@@ -33,6 +35,9 @@ class ProductController extends Controller
             self::ACTION_GET_PRODUCTS => [
                 'class' => GetProductsAction::class
             ],
+            self::ACTION_OPTIONS => [
+                'class' => OptionsAction::class
+            ],
         ];
     }
 
@@ -44,6 +49,7 @@ class ProductController extends Controller
         return [
             self::ACTION_PUSH_PRODUCTS => ['POST'],
             self::ACTION_GET_PRODUCTS => ['GET'],
+            self::ACTION_OPTIONS => ['OPTIONS'],
         ];
     }
 }

@@ -10,35 +10,36 @@ declare(strict_types=1);
 namespace rest\components\product;
 
 use common\models\Product;
+use yii\web\NotFoundHttpException;
+use yii\web\ServerErrorHttpException;
 
 /**
  * Class UpdateCommand
  * @package rest\components\product
  */
-class UpdateCommand extends ProductCommand
+class UpdateCommand extends EditableModelCommand
 {
     public function run($data)
     {
         /** @var Product $product */
         $product = Product::findOne(['guid' => $this->guid]);
         if ($product) {
-            $product->title = $data['title'];
-            $product->section_title = $data['section_title'];
-            $product->h1 = $data['h1'];
-            $product->short_description = $data['short_description'];
-            $product->meta_description = $data['meta_description'];
-            $product->description = $data['description'];
-            $product->pdf_url = $data['pdf_url'];
-            $product->certificates = $this->mirrorImages($data['certificates']);
-            $product->installation_content = $data['installation_content'];
-            $product->features_content = $data['features_content'];
-            $product->sizes_content = $data['sizes_content'];
+            $this->setProductAttributes($product, $data);
 
-            $product = $this->uploadFiles($product);
-
-            if ($product->save()) {
-                $this->processSizes($product->id, $data['sizes']);
+            $transaction = \Yii::$app->db->beginTransaction();
+            try {
+                if ($product->save()) {
+                    $this->processSizes($product->id, $data['sizes']);
+                    $transaction->commit();
+                } else {
+                    throw new ServerErrorHttpException('Product with guid:' . $this->guid . ' not save.');
+                }
+            } catch (\Throwable $exception) {
+                $transaction->rollBack();
+                throw $exception;
             }
+        } else {
+            throw new NotFoundHttpException('Product with guid:' . $this->guid . ' not found.');
         }
     }
 }

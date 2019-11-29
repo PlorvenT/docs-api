@@ -54,6 +54,9 @@ class PushProductsAction extends Action
 
         Yii::$app->response->setStatusCode(200);
 
-        return ['status' => 'success'];
+        return [
+            'code' => 200,
+            'status' => 'success',
+        ];
     }
 }

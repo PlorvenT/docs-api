@@ -91,8 +91,16 @@ class ParseContentService
         return $postImages;
     }
 
+    /**
+     * @param $html
+     * @return mixed
+     */
     function mirrorImageInContent($html)
     {
+        if (!$html) {
+            return $html;
+        }
+
         $images = $this->getImages($html);
 
         foreach ($images as $image) {

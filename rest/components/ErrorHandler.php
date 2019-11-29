@@ -8,6 +8,7 @@
 
 namespace rest\components;
 
+use yii\helpers\Url;
 use yii\web\ErrorHandler as WebErrorHandler;
 use yii\base\Exception;
 use yii\base\ErrorException;
@@ -32,9 +33,11 @@ class ErrorHandler extends WebErrorHandler
             );
         }
 
+        $swaggerLink = Url::to('swagger/swagger.json', true);
         $array = [
             'message' => $exception->getMessage(),
             'code' => $exception->getCode(),
+            'help'=> "Смотри документацию апи http://petstore.swagger.io/?url=$swaggerLink"
         ];
         if ($exception instanceof HttpException) {
             $array['status'] = 'error';

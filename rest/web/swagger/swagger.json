@@ -1,0 +1,345 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "Документация АПИ.",
+        "version": "1.0.0",
+        "title": "AERDYN API"
+    },
+    "security": [
+        {
+            "Bearer": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "Products",
+            "description": "Работа с продуктами"
+        }
+    ],
+    "paths": {
+        "/content/get-products": {
+            "get": {
+                "security": [],
+                "summary": "Список продуктов",
+                "tags": [
+                    "Products"
+                ],
+                "operationId": "contentGetProducts",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "products": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/getProduct"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/content/push-products": {
+            "post": {
+                "security": [],
+                "summary": "Отправить продукты на сервер продуктов",
+                "tags": [
+                    "Products"
+                ],
+                "operationId": "contentPushProducts",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "products": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/postProduct"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "servers":[
+        {
+            "url": "http://api.aerdyn.cdpros.ru"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "postProduct": {
+                "type": "object",
+                "properties": {
+                    "guid": {
+                        "type": "string",
+                        "example": "unique-id"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "new",
+                            "update",
+                            "delete"
+                        ]
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Название товара, идёт в title разметки страницы"
+                    },
+                    "section_title": {
+                        "type": "string",
+                        "example": "section_title"
+                    },
+                    "h1": {
+                        "type": "string",
+                        "example": "Название товара для страницы"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "example": "Короткое описание товара, выводимое над вкладками"
+                    },
+                    "meta_description": {
+                        "type": "string",
+                        "example": "Мета описание товара для SEO"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Подробное текстовое описание товара, для new и update, как и все прочие пункты, для delete только  id"
+                    },
+                    "pdf_url": {
+                        "type": "string",
+                        "example": "http://balancer.loc/mirror-files/1575054666_b54a09a7efeacd78c3fa436d4392af49.pdf",
+                        "description": "Ссылка на пдф которая потом заменится"
+                    },
+                    "marking_content": {
+                        "type": "string",
+                        "example": "Контент для вкладки Маркировка"
+                    },
+                    "installation_content": {
+                        "type": "string",
+                        "example": "Контент  картинки которого потом проксируются"
+                    },
+                    "pickup_modal_content": {
+                        "type": "string",
+                        "example": "Контент  картинки которого потом проксируются"
+                    },
+                    "certificates": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/productCertificates"
+                        }
+                    },
+                    "sizes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/postProductSize"
+                        }
+                    }
+                }
+            },
+            "postProductSize": {
+                "type": "object",
+                "properties": {
+                    "guid": {
+                        "type": "string",
+                        "example": "unique-id"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "new",
+                            "update",
+                            "delete"
+                        ]
+                    },
+                    "sizes_content": {
+                        "type": "string",
+                        "example": "Какойто контент."
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "123.10"
+                    },
+                    "features_content": {
+                        "type": "string",
+                        "example": "Контент"
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/productSizeImage"
+                        }
+                    }
+                }
+            },
+            "getProduct": {
+                "type": "object",
+                "properties": {
+                    "guid": {
+                        "type": "string",
+                        "example": "unique-id"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Название товара, идёт в title разметки страницы"
+                    },
+                    "section_title": {
+                        "type": "string",
+                        "example": "section_title"
+                    },
+                    "h1": {
+                        "type": "string",
+                        "example": "Название товара для страницы"
+                    },
+                    "short_description": {
+                        "type": "string",
+                        "example": "Короткое описание товара, выводимое над вкладками"
+                    },
+                    "meta_description": {
+                        "type": "string",
+                        "example": "Мета описание товара для SEO"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Подробное текстовое описание товара, для new и update, как и все прочие пункты, для delete только  id"
+                    },
+                    "pdf_url": {
+                        "type": "string",
+                        "example": "http://balancer.loc/mirror-files/1575054666_b54a09a7efeacd78c3fa436d4392af49.pdf",
+                        "description": "Ссылка на пдф которая потом заменится"
+                    },
+                    "marking_content": {
+                        "type": "string",
+                        "example": "Контент для вкладки Маркировка"
+                    },
+                    "installation_content": {
+                        "type": "string",
+                        "example": "Контент  картинки которого потом проксируются"
+                    },
+                    "pickup_modal_content": {
+                        "type": "string",
+                        "example": "Контент  картинки которого потом проксируются"
+                    },
+                    "certificates": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/productCertificates"
+                        }
+                    },
+                    "sizes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/getProductSize"
+                        }
+                    }
+                }
+            },
+            "getProductSize": {
+                "type": "object",
+                "properties": {
+                    "guid": {
+                        "type": "string",
+                        "example": "unique-id"
+                    },
+                    "sizes_content": {
+                        "type": "string",
+                        "example": "Какойто контент."
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "123.10"
+                    },
+                    "features_content": {
+                        "type": "string",
+                        "example": "Контент"
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/productSizeImage"
+                        }
+                    }
+                }
+            },
+            "productSizeImage": {
+                "type": "object",
+                "properties": {
+                    "item": {
+                        "type": "object",
+                        "properties": {
+                            "guid": {
+                                "type": "string",
+                                "example": "unique-id"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Подпись для изображения, для атрибута alt, нужно для SEO"
+                            }
+                        }
+                    }
+                }
+            },
+            "productCertificates": {
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "type": "string",
+                        "example": "Текстовая часть материалов для вкладки Сертификаты"
+                    },
+                    "images": {
+                        "type": "object",
+                        "properties": {
+                            "item": {
+                                "type": "object",
+                                "properties": {
+                                    "guid": {
+                                        "type": "string",
+                                        "example": "http://example.loc/img/no_image.png",
+                                        "description": "Ссылка на файл"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
