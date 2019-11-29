@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace rest\components\product;
 
 use common\models\Product;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class DeleteCommand
@@ -28,6 +29,8 @@ class DeleteCommand extends ProductCommand
         $product = Product::findOne(['guid' => $this->guid]);
         if ($product) {
             $product->delete();
+        } else {
+            throw new NotFoundHttpException('Item with guid:"' . $this->guid . '" not found.');
         }
     }
 }

@@ -40,21 +40,18 @@ class PushProductsAction extends Action
     public function run()
     {
         $products = \Yii::$app->request->post('products');
-        if ( isset ($products['item']) ) {
-        	foreach ( $products['item'] as $item ) {
-		        $command = CommandFactory::create($item);
-		        if ($command) {
-			        $command->run($item);
-		        }
-	        }
+        if (empty($products)) {
+            return ['status' => 'error', 'message' => 'There is no items'];
         }
-//        $installationContent = \Yii::$app->request->post('products')['item']['installation_content'];
-//        $installationContent = $this->parseContentService->mirrorImageInContent($installationContent);
-//        var_dump($installationContent);
-//        die();
-//
-//        $newName = $this->parseContentService->saveFile($pdf);
-//        return $newName;
+        foreach ($products as $product) {
+            $command = CommandFactory::create($product['item']);
+            if ($command) {
+                $command->run($product['item']);
+            } else {
+                return ['status' => 'error', 'message' => 'Invalid item action'];
+            }
+        }
+
         Yii::$app->response->setStatusCode(200);
 
         return ['status' => 'success'];

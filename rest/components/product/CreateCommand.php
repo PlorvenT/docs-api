@@ -11,6 +11,7 @@ namespace rest\components\product;
 
 use common\models\Product;
 use common\models\ProductSize;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class CreateCommand
@@ -43,6 +44,9 @@ class CreateCommand extends ProductCommand
 
         if ($product->save()) {
             $this->processSizes($product->id, $data['sizes']);
+        } else {
+            \Yii::error($product->errors. 'app');
+            throw new NotFoundHttpException('Item not created.');
         }
     }
 }
